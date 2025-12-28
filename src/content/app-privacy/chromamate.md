@@ -6,20 +6,20 @@ dataCollection: []
 thirdParties: []
 ---
 
-# Privacy Policy for ChromoMate
+# Privacy Policy for ChromaMate
 
 **Effective Date: December 28, 2025**
 **Last Updated: December 28, 2025**
 
 ## 1. Our Privacy Commitment
 
-ChromoMate is designed with privacy as a core principle. We believe color picking should be a private activity, and we've built ChromoMate to respect your privacy completely.
+ChromaMate is designed with privacy as a core principle. We believe color picking should be a private activity, and we've built ChromaMate to respect your privacy completely.
 
-**Key Statement: ChromoMate collects NO personal data from your device or activity.**
+**Key Statement: ChromaMate collects NO personal data from your device or activity.**
 
 ## 2. Information We Do NOT Collect
 
-ChromoMate does NOT collect, store, or transmit:
+ChromaMate does NOT collect, store, or transmit:
 
 - ❌ Your location or GPS data
 - ❌ Your contacts or call history
@@ -54,7 +54,7 @@ ChromoMate does NOT collect, store, or transmit:
 
 ## 4. Automatic Data Collection
 
-ChromoMate does NOT use:
+ChromaMate does NOT use:
 - ❌ Analytics services (Google Analytics, Mixpanel, etc.)
 - ❌ Crash reporting services
 - ❌ Advertising networks
@@ -175,7 +175,7 @@ Questions about privacy?
 **Contact Methods:**
 - In-app support: Help > Contact Us
 - App Store: Reviews section
-- Website: privacy@chromomate.app
+- Website: privacy@chromamate.app
 
 **Response Time:** We respond to privacy inquiries within 7 days.
 

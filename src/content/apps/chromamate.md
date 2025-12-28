@@ -1,5 +1,5 @@
 ---
-title: "ChromoMate"
+title: "ChromaMate"
 description: "Fast and intuitive color picker for iOS. Capture, edit, and organize colors. Free to use with all core features included."
 category: "utility"
 version: "1.0.0"
@@ -12,9 +12,9 @@ downloadUrl: "https://apps.apple.com/app/chromamate/id123456789"
 platforms: ["ios", "android"]
 ---
 
-## About ChromoMate
+## About ChromaMate
 
-ChromoMate is a fast and intuitive color picker for iOS designers, photographers, and artists. Capture colors from your camera, edit them manually, and organize your favorite colors—completely free to use.
+ChromaMate is a fast and intuitive color picker for iOS designers, photographers, and artists. Capture colors from your camera, edit them manually, and organize your favorite colors—completely free to use.
 
 ### Key Features
 
@@ -67,4 +67,4 @@ We may introduce optional premium features in the future, but all core functiona
 
 ### Support
 
-For questions or feature requests, email us at [contact@borysonline.com](mailto:contact@borysonline.com?subject=ChromoMate%20Support). We're constantly improving ChromoMate based on user feedback.
+For questions or feature requests, email us at [contact@borysonline.com](mailto:contact@borysonline.com?subject=ChromaMate%20Support). We're constantly improving ChromaMate based on user feedback.

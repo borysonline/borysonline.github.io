@@ -4,7 +4,7 @@ lastUpdated: 2025-12-28
 version: "1.0"
 ---
 
-# Terms of Use for ChromoMate
+# Terms of Use for ChromaMate
 
 **Effective Date: December 28, 2025**
 **Last Updated: December 28, 2025**
@@ -53,11 +53,11 @@ Usage of these colors is subject to their respective licenses. You are free to u
 
 ## 5. Future Enhancements
 
-ChromoMate is provided free of charge with all core features included. We reserve the right to introduce optional premium features or enhancements in the future. Any such features will be clearly disclosed before they are made available, and the core functionality of the app will remain free.
+ChromaMate is provided free of charge with all core features included. We reserve the right to introduce optional premium features or enhancements in the future. Any such features will be clearly disclosed before they are made available, and the core functionality of the app will remain free.
 
 ## 6. Warranty Disclaimer
 
-ChromoMate is provided \"AS IS\" without any warranties, express or implied. We do not warrant that:
+ChromaMate is provided "AS IS" without any warranties, express or implied. We do not warrant that:
 
 - The Application will meet your requirements
 - The Application will be uninterrupted, timely, or error-free
