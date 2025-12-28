@@ -1,0 +1,71 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="app-container">
+    <slot />
+  </div>
+</BaseLayout>
+
+<style>
+  .app-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .app-container :global(h1) {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-primary);
+  }
+
+  .app-container :global(h2) {
+    font-size: 1.8rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+  }
+
+  .app-container :global(h3) {
+    font-size: 1.4rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .app-container :global(p) {
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+  }
+
+  .app-container :global(a) {
+    color: var(--color-link);
+    text-decoration: none;
+  }
+
+  .app-container :global(a:hover) {
+    text-decoration: underline;
+  }
+
+  .app-container :global(img) {
+    max-width: 100%;
+    height: auto;
+    margin: 1rem 0;
+    border-radius: 4px;
+  }
+
+  .app-container :global(ul),
+  .app-container :global(ol) {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+  }
+</style>

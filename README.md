@@ -1,16 +1,22 @@
 # Borys Online
 
-Personal website built with Jekyll and hosted on GitHub Pages.
+Personal website and applications catalog built with Astro and hosted on GitHub Pages.
 
 ## Local Development
 
 ```bash
-bundle install
-bundle exec jekyll serve
+pnpm install
+pnpm run dev
 ```
 
-Visit `http://localhost:4000` to view the site locally.
+Visit `http://localhost:4321` to view the site locally.
+
+## Build
+
+```bash
+pnpm run build
+```
 
 ## Deployment
 
-Push to the main branch to deploy automatically via GitHub Pages.
+Push to the main branch to deploy automatically via GitHub Actions.

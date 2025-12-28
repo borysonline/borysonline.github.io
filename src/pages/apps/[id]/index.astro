@@ -1,0 +1,281 @@
+---
+import AppLayout from '@layouts/AppLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const apps = await getCollection('apps');
+  
+  return apps.map(app => ({
+    params: { id: app.slug },
+    props: { app },
+  }));
+}
+
+const { app } = Astro.props;
+const { Content } = await app.render();
+---
+
+<AppLayout title={app.data.title} description={app.data.description}>
+  <div class="app-header">
+    {app.data.icon && (
+      <img src={app.data.icon} alt={app.data.title} class="app-icon" />
+    )}
+    <div class="app-title-section">
+      <h1>{app.data.title}</h1>
+      <div class="app-metadata">
+        <span class="badge badge-category">{app.data.category}</span>
+        <span class="badge badge-version">v{app.data.version}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="app-content">
+    <Content />
+  </div>
+
+  {app.data.platforms && app.data.platforms.length > 0 && (
+    <div class="platforms">
+      <h3>Available on</h3>
+      <div class="platform-badges">
+        {app.data.platforms.map(platform => (
+          <span class="platform-badge">{platform}</span>
+        ))}
+      </div>
+    </div>
+  )}
+
+  <nav class="app-nav">
+    <h3>Documentation</h3>
+    <ul>
+      <li><a href={`/apps/${app.slug}/terms/`}>Terms of Use</a></li>
+      <li><a href={`/apps/${app.slug}/privacy/`}>Privacy Policy</a></li>
+    </ul>
+  </nav>
+
+  <div class="back-link">
+    <a href="/apps/">← Back to Applications</a>
+  </div>
+</AppLayout>
+
+<style>
+  .app-header {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border);
+    align-items: flex-start;
+  }
+
+  .app-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 12px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .app-title-section {
+    flex: 1;
+  }
+
+  .app-title-section h1 {
+    margin: 0 0 1rem 0;
+    font-size: 2.5rem;
+  }
+
+  .app-metadata {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .badge-category {
+    background: var(--color-link);
+    color: white;
+    text-transform: capitalize;
+  }
+
+  .badge-version {
+    background: var(--color-bg-secondary);
+    color: var(--color-muted);
+  }
+
+  .app-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+
+  .app-content :global(h2) {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+  }
+
+  .app-content :global(h3) {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.4rem;
+  }
+
+  .app-content :global(p) {
+    margin-bottom: 1rem;
+  }
+
+  .app-content :global(ul),
+  .app-content :global(ol) {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .app-content :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  .app-content :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+  }
+
+  .app-actions {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 2rem 0;
+  }
+
+  .app-actions h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .button {
+    display: inline-block;
+    background: var(--color-link);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+  }
+
+  .button:hover {
+    background: var(--color-link-hover);
+  }
+
+  .platforms {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: var(--color-bg-secondary);
+    border-radius: 6px;
+  }
+
+  .platforms h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+
+  .platform-badges {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .platform-badge {
+    display: inline-block;
+    background: white;
+    border: 1px solid var(--color-border);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    text-transform: capitalize;
+  }
+
+  .app-nav {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .app-nav h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+
+  .app-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .app-nav li {
+    margin-bottom: 0.5rem;
+  }
+
+  .app-nav a {
+    color: var(--color-link);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .app-nav a:hover {
+    text-decoration: underline;
+  }
+
+  .back-link {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .back-link a {
+    color: var(--color-link);
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .app-header {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .app-icon {
+      width: 100px;
+      height: 100px;
+    }
+
+    .app-title-section h1 {
+      font-size: 1.8rem;
+    }
+
+    .action-buttons {
+      flex-direction: column;
+    }
+
+    .button {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>

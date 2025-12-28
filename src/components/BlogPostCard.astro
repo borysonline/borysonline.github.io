@@ -1,0 +1,116 @@
+---
+import { formatDate } from '@utils/formatDate';
+
+export interface Props {
+  title: string;
+  description: string;
+  slug: string;
+  pubDate: Date;
+  author?: string;
+  categories?: string[];
+}
+
+const { title, description, slug, pubDate, author, categories } = Astro.props;
+---
+
+<article class="blog-card">
+  <div class="blog-header">
+    <h3><a href={`/blog/${slug}/`}>{title}</a></h3>
+    <time datetime={pubDate.toISOString()} class="date">
+      {formatDate(pubDate)}
+    </time>
+  </div>
+  
+  <p class="excerpt">{description}</p>
+  
+  {author && <p class="author">by {author}</p>}
+  
+  {categories && categories.length > 0 && (
+    <div class="categories">
+      {categories.map((cat) => (
+        <span class="category">{cat}</span>
+      ))}
+    </div>
+  )}
+  
+  <a href={`/blog/${slug}/`} class="read-more">Read More →</a>
+</article>
+
+<style>
+  .blog-card {
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    background: var(--color-bg);
+    transition: all 0.3s ease;
+  }
+
+  .blog-card:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-color: var(--color-link);
+  }
+
+  .blog-header {
+    margin-bottom: 1rem;
+  }
+
+  .blog-header h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.3rem;
+  }
+
+  .blog-header a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .blog-header a:hover {
+    color: var(--color-link);
+  }
+
+  .date {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+
+  .excerpt {
+    margin: 0.75rem 0;
+    color: var(--color-text);
+    line-height: 1.6;
+  }
+
+  .author {
+    font-size: 0.9rem;
+    color: var(--color-muted);
+    margin: 0.5rem 0;
+  }
+
+  .categories {
+    display: flex;
+    gap: 0.5rem;
+    margin: 0.75rem 0;
+    flex-wrap: wrap;
+  }
+
+  .category {
+    display: inline-block;
+    background: var(--color-bg-secondary);
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    color: var(--color-muted);
+  }
+
+  .read-more {
+    color: var(--color-link);
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-block;
+    margin-top: 0.5rem;
+  }
+
+  .read-more:hover {
+    text-decoration: underline;
+  }
+</style>

@@ -1,0 +1,229 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import AppCard from '@components/AppCard.astro';
+import BlogPostCard from '@components/BlogPostCard.astro';
+
+const apps = await getCollection('apps');
+const blog = await getCollection('blog');
+
+const featuredApps = apps.filter(app => app.data.featured).slice(0, 3);
+const recentPosts = blog
+  .filter(post => !post.data.draft)
+  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
+  .slice(0, 3);
+---
+
+<BaseLayout title="Borys Online - Apps & Blog" description="Catalog of applications and blog posts">
+  <div class="home">
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1>Welcome to Borys Online</h1>
+      <p>A collection of useful applications and insights from the development world.</p>
+      <div class="hero-buttons">
+        <a href="/apps/" class="button">Explore Apps</a>
+        <a href="/blog/" class="button-secondary">Read Blog</a>
+      </div>
+    </section>
+
+    <!-- Featured Apps -->
+    {apps.length > 0 && (
+      <section class="featured-section">
+        <div class="section-header">
+          <h2>Featured Applications</h2>
+          <a href="/apps/" class="view-all">View All →</a>
+        </div>
+
+        <div class="apps-list">
+          {apps.slice(0, 3).map(app => (
+            <AppCard
+              title={app.data.title}
+              description={app.data.description}
+              slug={app.slug}
+              version={app.data.version}
+              category={app.data.category}
+              icon={app.data.icon}
+              featured={app.data.featured}
+            />
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Latest Blog Posts -->
+    {blog.length > 0 && (
+      <section class="blog-section">
+        <div class="section-header">
+          <h2>Latest Blog Posts</h2>
+          <a href="/blog/" class="view-all">View All →</a>
+        </div>
+
+        <div class="blog-list">
+          {recentPosts.map(post => (
+            <BlogPostCard
+              title={post.data.title}
+              description={post.data.description}
+              slug={post.slug}
+              pubDate={post.data.pubDate}
+              author={post.data.author}
+              categories={post.data.categories}
+            />
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <h2>Stay Updated</h2>
+      <p>Subscribe to the RSS feed to get the latest updates about new applications and blog posts.</p>
+      <a href="/feed.xml" class="button">Subscribe to RSS</a>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .home {
+    animation: fadeIn 0.5s ease-in;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero {
+    text-align: center;
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 3rem;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero p {
+    font-size: 1.3rem;
+    color: var(--color-muted);
+    margin-bottom: 2rem;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .button {
+    display: inline-block;
+    background-color: var(--color-link);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+  }
+
+  .button:hover {
+    background-color: var(--color-link-hover);
+  }
+
+  .button-secondary {
+    display: inline-block;
+    border: 2px solid var(--color-link);
+    color: var(--color-link);
+    padding: 0.5rem 1.5rem;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+  }
+
+  .button-secondary:hover {
+    background-color: var(--color-link);
+    color: white;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--color-border);
+    padding-bottom: 1rem;
+  }
+
+  .section-header h2 {
+    font-size: 2rem;
+    margin: 0;
+  }
+
+  .view-all {
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .featured-section {
+    margin-bottom: 3rem;
+  }
+
+  .blog-section {
+    margin-bottom: 3rem;
+  }
+
+  .apps-list,
+  .blog-list {
+    margin: 0 -1rem;
+  }
+
+  .cta-section {
+    text-align: center;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 3rem 2rem;
+    margin-top: 3rem;
+  }
+
+  .cta-section h2 {
+    margin-bottom: 1rem;
+  }
+
+  .cta-section p {
+    color: var(--color-muted);
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+    }
+
+    .section-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.5rem;
+    }
+  }
+</style>

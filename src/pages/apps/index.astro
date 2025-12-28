@@ -1,0 +1,73 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import AppCard from '@components/AppCard.astro';
+
+const apps = await getCollection('apps');
+const sorted = apps.sort((a, b) => 
+  new Date(b.data.releaseDate).getTime() - new Date(a.data.releaseDate).getTime()
+);
+---
+
+<BaseLayout title="Applications - Borys Online" description="Browse all applications">
+  <div class="apps-container">
+    <h1>Applications</h1>
+    <p class="subtitle">A curated collection of useful applications and tools.</p>
+
+    {sorted.length > 0 ? (
+      <div class="apps-list">
+        {sorted.map(app => (
+          <AppCard
+            title={app.data.title}
+            description={app.data.description}
+            slug={app.slug}
+            version={app.data.version}
+            category={app.data.category}
+            icon={app.data.icon}
+            featured={app.data.featured}
+          />
+        ))}
+      </div>
+    ) : (
+      <p class="empty-state">No applications found yet. Check back soon!</p>
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  .apps-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .subtitle {
+    text-align: center;
+    color: var(--color-muted);
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+  }
+
+  .apps-list {
+    margin: 0;
+  }
+
+  .empty-state {
+    text-align: center;
+    color: var(--color-muted);
+    padding: 2rem 0;
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 1.8rem;
+    }
+  }
+</style>

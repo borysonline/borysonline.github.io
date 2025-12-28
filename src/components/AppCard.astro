@@ -1,0 +1,163 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  slug: string;
+  version: string;
+  category: string;
+  icon?: string;
+  featured?: boolean;
+}
+
+const { title, description, slug, version, category, icon, featured } = Astro.props;
+---
+
+<article class="app-card" class:list={{ featured }}>
+  {icon && (
+    <div class="app-icon">
+      <img src={icon} alt={title} />
+    </div>
+  )}
+  
+  <div class="app-info">
+    <h3><a href={`/apps/${slug}/`}>{title}</a></h3>
+    
+    <div class="app-meta">
+      <span class="category">{category}</span>
+      <span class="version">v{version}</span>
+    </div>
+    
+    <p class="description">{description}</p>
+    
+    <div class="app-links">
+      <a href={`/apps/${slug}/`} class="view-app">View App</a>
+      <a href={`/apps/${slug}/terms/`} class="meta-link">Terms</a>
+      <a href={`/apps/${slug}/privacy/`} class="meta-link">Privacy</a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .app-card {
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    background: var(--color-bg);
+    transition: all 0.3s ease;
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .app-card.featured {
+    border-color: var(--color-link);
+    background: var(--color-bg-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .app-card:hover {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  }
+
+  .app-icon {
+    flex-shrink: 0;
+  }
+
+  .app-icon img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .app-info {
+    flex: 1;
+  }
+
+  .app-info h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.3rem;
+  }
+
+  .app-info a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .app-info a:hover {
+    color: var(--color-link);
+  }
+
+  .app-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .category {
+    background: var(--color-link);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    text-transform: capitalize;
+    font-weight: 500;
+  }
+
+  .version {
+    color: var(--color-muted);
+    padding: 0.25rem 0;
+  }
+
+  .description {
+    margin: 0.75rem 0;
+    color: var(--color-text);
+    line-height: 1.6;
+  }
+
+  .app-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .view-app {
+    color: white;
+    background: var(--color-link);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .view-app:hover {
+    opacity: 0.9;
+  }
+
+  .meta-link {
+    color: var(--color-link);
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .meta-link:hover {
+    border-bottom-color: var(--color-link);
+  }
+
+  @media (max-width: 600px) {
+    .app-card {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .app-icon img {
+      width: 60px;
+      height: 60px;
+    }
+  }
+</style>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <g fill="none" fill-rule="evenodd">
+    <circle cx="64" cy="64" r="64" fill="#3498db"/>
+    <text x="64" y="70" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="white" text-anchor="middle">B</text>
+  </g>
+</svg>

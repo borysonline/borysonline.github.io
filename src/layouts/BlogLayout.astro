@@ -1,0 +1,143 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { formatDate } from '@utils/formatDate';
+
+export interface Props {
+  title: string;
+  description: string;
+  pubDate?: Date;
+  categories?: string[];
+  author?: string;
+}
+
+const { title, description, pubDate, categories, author = 'Borys' } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="article">
+    <header class="article-header">
+      <h1>{title}</h1>
+      {pubDate && (
+        <div class="article-meta">
+          <time datetime={pubDate.toISOString()}>
+            {formatDate(pubDate)}
+          </time>
+          {author && <span class="author">by {author}</span>}
+          {categories && categories.length > 0 && (
+            <div class="categories">
+              {categories.map((cat) => (
+                <span class="category">{cat}</span>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+    </header>
+
+    <div class="article-content">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .article {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  .article-header {
+    margin-bottom: 2rem;
+  }
+
+  .article-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+  }
+
+  .article-meta {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    color: var(--color-muted);
+    font-size: 0.95rem;
+  }
+
+  .article-meta time {
+    font-weight: 500;
+  }
+
+  .categories {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .category {
+    display: inline-block;
+    background: var(--color-bg-secondary);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+  }
+
+  .article-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--color-text);
+  }
+
+  .article-content :global(h2) {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    color: var(--color-primary);
+  }
+
+  .article-content :global(h3) {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.4rem;
+  }
+
+  .article-content :global(p) {
+    margin-bottom: 1rem;
+  }
+
+  .article-content :global(a) {
+    color: var(--color-link);
+    text-decoration: none;
+  }
+
+  .article-content :global(a:hover) {
+    text-decoration: underline;
+  }
+
+  .article-content :global(code) {
+    background: var(--color-bg-secondary);
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+  }
+
+  .article-content :global(pre) {
+    background: var(--color-bg-secondary);
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+
+  .article-content :global(ul),
+  .article-content :global(ol) {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .article-content :global(li) {
+    margin-bottom: 0.5rem;
+  }
+</style>

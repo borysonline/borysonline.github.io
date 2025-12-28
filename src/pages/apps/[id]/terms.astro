@@ -1,0 +1,186 @@
+---
+import AppLayout from '@layouts/AppLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const apps = await getCollection('apps');
+  const terms = await getCollection('app-terms');
+  
+  return apps.map(app => {
+    const appTerms = terms.find(t => t.data.appId === app.slug);
+    return {
+      params: { id: app.slug },
+      props: { app, terms: appTerms },
+    };
+  });
+}
+
+const { app, terms } = Astro.props;
+const { Content } = terms 
+  ? await terms.render() 
+  : { Content: null };
+---
+
+<AppLayout title={`${app.data.title} - Terms of Use`} description={`Terms of Use for ${app.data.title}`}>
+  <div class="breadcrumb">
+    <a href="/apps/">Apps</a>
+    <span>/</span>
+    <a href={`/apps/${app.slug}/`}>{app.data.title}</a>
+    <span>/</span>
+    <span>Terms of Use</span>
+  </div>
+
+  <h1>Terms of Use</h1>
+  <h2>{app.data.title}</h2>
+
+  {terms && (
+    <div class="meta">
+      <p class="version">Version {terms.data.version}</p>
+      <p class="updated">Last updated: {terms.data.lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+    </div>
+  )}
+
+  {Content ? (
+    <div class="terms-content">
+      <Content />
+    </div>
+  ) : (
+    <div class="placeholder">
+      <p>Terms of Use for this application are not yet available. Please check back soon or contact the developer for more information.</p>
+    </div>
+  )}
+
+  <nav class="app-nav">
+    <a href={`/apps/${app.slug}/`} class="nav-button">← Back to {app.data.title}</a>
+    <a href={`/apps/${app.slug}/privacy/`} class="nav-button">Privacy Policy →</a>
+  </nav>
+</AppLayout>
+
+<style>
+  .breadcrumb {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+    color: var(--color-muted);
+  }
+
+  .breadcrumb a {
+    color: var(--color-link);
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-link);
+  }
+
+  .meta {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+  }
+
+  .meta p {
+    margin: 0.25rem 0;
+    color: var(--color-muted);
+  }
+
+  .version {
+    font-weight: 500;
+  }
+
+  .terms-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  .terms-content :global(h3) {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+  }
+
+  .terms-content :global(h4) {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .terms-content :global(p) {
+    margin-bottom: 1rem;
+  }
+
+  .terms-content :global(ul),
+  .terms-content :global(ol) {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .terms-content :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  .placeholder {
+    background: var(--color-bg-secondary);
+    border: 1px dashed var(--color-border);
+    border-radius: 6px;
+    padding: 2rem;
+    text-align: center;
+    color: var(--color-muted);
+  }
+
+  .app-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+    flex-wrap: wrap;
+  }
+
+  .nav-button {
+    flex: 1;
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--color-link);
+    font-weight: 500;
+    text-align: center;
+    transition: var(--transition);
+  }
+
+  .nav-button:hover {
+    background: var(--color-bg-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .breadcrumb {
+      font-size: 0.85rem;
+    }
+
+    .app-nav {
+      flex-direction: column;
+    }
+
+    .nav-button {
+      width: 100%;
+    }
+  }
+</style>

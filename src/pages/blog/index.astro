@@ -1,0 +1,72 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import BlogPostCard from '@components/BlogPostCard.astro';
+
+const blog = await getCollection('blog');
+const sorted = blog
+  .filter(post => !post.data.draft)
+  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+---
+
+<BaseLayout title="Blog - Borys Online" description="Read my latest blog posts">
+  <div class="blog-container">
+    <h1>Blog</h1>
+    <p class="subtitle">Thoughts, insights, and updates about development and technology.</p>
+
+    {sorted.length > 0 ? (
+      <div class="posts-list">
+        {sorted.map(post => (
+          <BlogPostCard
+            title={post.data.title}
+            description={post.data.description}
+            slug={post.slug}
+            pubDate={post.data.pubDate}
+            author={post.data.author}
+            categories={post.data.categories}
+          />
+        ))}
+      </div>
+    ) : (
+      <p class="empty-state">No blog posts found yet. Check back soon!</p>
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  .blog-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .subtitle {
+    text-align: center;
+    color: var(--color-muted);
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+  }
+
+  .posts-list {
+    margin: 0;
+  }
+
+  .empty-state {
+    text-align: center;
+    color: var(--color-muted);
+    padding: 2rem 0;
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 1.8rem;
+    }
+  }
+</style>
