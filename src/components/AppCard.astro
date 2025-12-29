@@ -145,12 +145,15 @@ const { title, description, slug, version, category, icon, featured } = Astro.pr
     text-decoration: none;
     font-size: 0.9rem;
     padding: 0.5rem 0;
-    border-bottom: 1px solid transparent;
+    border-bottom: 2px solid transparent;
     transition: all 0.3s ease;
+    display: inline-block;
   }
 
   .meta-link:hover {
-    border-bottom-color: var(--color-link);
+    color: var(--color-link-hover);
+    border-bottom-color: var(--color-link-hover);
+    transform: translateY(-2px);
   }
 
   @media (max-width: 600px) {

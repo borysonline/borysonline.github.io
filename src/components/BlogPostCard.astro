@@ -108,9 +108,14 @@ const { title, description, slug, pubDate, author, categories } = Astro.props;
     font-weight: 500;
     display: inline-block;
     margin-top: 0.5rem;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
   }
 
   .read-more:hover {
-    text-decoration: underline;
+    color: var(--color-link-hover);
+    border-bottom-color: var(--color-link-hover);
+    transform: translateY(-2px);
   }
 </style>
