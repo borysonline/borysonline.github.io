@@ -123,17 +123,21 @@ const { title, description, slug, version, category, icon, featured } = Astro.pr
   }
 
   .view-app {
-    color: white;
+    color: white !important;
     background: var(--color-link);
     padding: 0.5rem 1rem;
     border-radius: 4px;
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;
+    display: inline-block;
   }
 
   .view-app:hover {
-    opacity: 0.9;
+    background: var(--color-link-hover);
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
 
   .meta-link {
