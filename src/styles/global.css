@@ -110,15 +110,15 @@ button:active, .button:active {
 .button-secondary {
   background-color: var(--color-border);
   color: var(--color-text);
-  border: 1px solid var(--color-border);
+  border: 2px solid var(--color-link);
 }
 
 .button-secondary:hover {
-  background-color: var(--color-bg-secondary);
-  border-color: var(--color-link);
-  color: var(--color-link);
+  background-color: transparent;
+  border-color: var(--color-link-hover);
+  color: var(--color-link-hover);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
 }
 
 .button-secondary:active {
@@ -127,14 +127,15 @@ button:active, .button:active {
 
 @media (prefers-color-scheme: dark) {
   .button-secondary {
-    background-color: var(--color-bg-secondary);
+    background-color: transparent;
     color: var(--color-text);
-    border-color: var(--color-border);
+    border-color: var(--color-link);
   }
 
   .button-secondary:hover {
-    background-color: var(--color-primary);
-    color: var(--color-bg);
+    background-color: transparent;
+    border-color: var(--color-link-hover);
+    color: var(--color-link-hover);
   }
 }
 
