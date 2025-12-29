@@ -108,8 +108,8 @@ button:active, .button:active {
 
 /* Secondary Button */
 .button-secondary {
-  background-color: var(--color-border);
-  color: var(--color-text);
+  background-color: transparent;
+  color: var(--color-link);
   border: 2px solid var(--color-link);
 }
 
@@ -128,7 +128,7 @@ button:active, .button:active {
 @media (prefers-color-scheme: dark) {
   .button-secondary {
     background-color: transparent;
-    color: var(--color-text);
+    color: var(--color-link);
     border-color: var(--color-link);
   }
 
