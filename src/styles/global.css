@@ -76,7 +76,7 @@ a:hover {
   color: var(--color-link-hover);
 }
 
-button, .button {
+button, .button, .button-secondary {
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: var(--radius-md);
@@ -84,15 +84,58 @@ button, .button {
   font-size: 1rem;
   cursor: pointer;
   transition: var(--transition);
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
 }
 
-button {
+/* Primary Button */
+button, .button {
   background-color: var(--color-link);
   color: white;
 }
 
-button:hover {
+button:hover, .button:hover {
   background-color: var(--color-link-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+button:active, .button:active {
+  transform: translateY(0);
+}
+
+/* Secondary Button */
+.button-secondary {
+  background-color: var(--color-border);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.button-secondary:hover {
+  background-color: var(--color-bg-secondary);
+  border-color: var(--color-link);
+  color: var(--color-link);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.button-secondary:active {
+  transform: translateY(0);
+}
+
+@media (prefers-color-scheme: dark) {
+  .button-secondary {
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text);
+    border-color: var(--color-border);
+  }
+
+  .button-secondary:hover {
+    background-color: var(--color-primary);
+    color: var(--color-bg);
+  }
 }
 
 /* Container */
