@@ -6,3 +6,5 @@ vendor/
 .bundle/
 Gemfile.lock
 node_modules
+.astro
+dist
