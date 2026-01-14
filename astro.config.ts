@@ -4,7 +4,9 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://borysonline.com',
   integrations: [
-    sitemap(),
+    sitemap({
+      filter: (page) => !page.includes('/feed.xml'),
+    }),
   ],
   markdown: {
     shikiConfig: {
