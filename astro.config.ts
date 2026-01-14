@@ -6,6 +6,7 @@ export default defineConfig({
   integrations: [
     sitemap({
       filter: (page) => !page.includes('/feed.xml'),
+      customPages: [],
     }),
   ],
   markdown: {
