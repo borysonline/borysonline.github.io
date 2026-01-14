@@ -1,24 +1,24 @@
 ---
-appId: "chromamate"
+appId: "colortron"
 lastUpdated: 2025-12-28
 version: "1.0"
 ---
 
-# Terms of Use for ChromaMate
+# Terms of Use for Colortron
 
 **Effective Date: December 28, 2025**
 **Last Updated: December 28, 2025**
 
 ## 1. Acceptance of Terms
 
-By downloading, installing, and using ChromoMate (\"Application\"), you agree to be bound by these Terms of Use. If you do not agree with any part of these terms, please do not use this Application.
+By downloading, installing, and using Colortron (\"Application\"), you agree to be bound by these Terms of Use. If you do not agree with any part of these terms, please do not use this Application.
 
 ## 2. License Grant
 
-We grant you a limited, non-exclusive, non-transferable license to use ChromoMate for personal, non-commercial purposes. This license allows you to:
+We grant you a limited, non-exclusive, non-transferable license to use Colortron for personal, non-commercial purposes. This license allows you to:
 
-- Download and install ChromoMate on your personal iOS device(s)
-- Use ChromoMate in accordance with these terms
+- Download and install Colortron on your personal iOS device(s)
+- Use Colortron in accordance with these terms
 - Access and use all free and purchased features
 - Create and save your color palettes and data
 
@@ -34,13 +34,13 @@ You may not:
 
 ## 3. Intellectual Property Rights
 
-All content in ChromoMate, including but not limited to text, graphics, logos, color databases, and color names, are the property of ChromoMate or its content suppliers and are protected by applicable copyright laws.
+All content in Colortron, including but not limited to text, graphics, logos, color databases, and color names, are the property of Colortron or its content suppliers and are protected by applicable copyright laws.
 
 However, the color codes you capture or create (HEX, RGB, HSL values) are your own and you may use them freely for any purpose.
 
 ## 4. Third-Party Content and Libraries
 
-ChromoMate includes color libraries and databases from various sources:
+Colortron includes color libraries and databases from various sources:
 
 - HTML Named Colors Database (public domain)
 - Material Design Colors (licensed under Apache 2.0)
@@ -53,11 +53,11 @@ Usage of these colors is subject to their respective licenses. You are free to u
 
 ## 5. Future Enhancements
 
-ChromaMate is provided free of charge with all core features included. We reserve the right to introduce optional premium features or enhancements in the future. Any such features will be clearly disclosed before they are made available, and the core functionality of the app will remain free.
+Colortron is provided free of charge with all core features included. We reserve the right to introduce optional premium features or enhancements in the future. Any such features will be clearly disclosed before they are made available, and the core functionality of the app will remain free.
 
 ## 6. Warranty Disclaimer
 
-ChromaMate is provided "AS IS" without any warranties, express or implied. We do not warrant that:
+Colortron is provided "AS IS" without any warranties, express or implied. We do not warrant that:
 
 - The Application will meet your requirements
 - The Application will be uninterrupted, timely, or error-free
@@ -68,7 +68,7 @@ Color detection results depend on device hardware, camera quality, and lighting 
 
 ## 7. Limitation of Liability
 
-To the fullest extent permitted by law, ChromoMate and its creators are not liable for:
+To the fullest extent permitted by law, Colortron and its creators are not liable for:
 
 - Any indirect, incidental, special, consequential, or punitive damages
 - Loss of data, files, or information
@@ -78,11 +78,11 @@ To the fullest extent permitted by law, ChromoMate and its creators are not liab
 
 ## 8. Termination
 
-We reserve the right to discontinue or modify ChromoMate at any time. We may also terminate your license if you violate these terms. Upon termination, you must cease using the Application.
+We reserve the right to discontinue or modify Colortron at any time. We may also terminate your license if you violate these terms. Upon termination, you must cease using the Application.
 
 ## 9. Changes to Terms
 
-We may update these Terms of Use from time to time. We will notify you of material changes through the Application or other appropriate means. Your continued use of ChromoMate after changes constitutes your acceptance of the new terms.
+We may update these Terms of Use from time to time. We will notify you of material changes through the Application or other appropriate means. Your continued use of Colortron after changes constitutes your acceptance of the new terms.
 
 ## 10. Governing Law
 

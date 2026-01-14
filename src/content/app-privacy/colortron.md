@@ -1,25 +1,25 @@
 ---
-appId: "chromamate"
+appId: "colortron"
 lastUpdated: 2025-12-28
 version: "1.0"
 dataCollection: []
 thirdParties: []
 ---
 
-# Privacy Policy for ChromaMate
+# Privacy Policy for Colortron
 
 **Effective Date: December 28, 2025**
 **Last Updated: December 28, 2025**
 
 ## 1. Our Privacy Commitment
 
-ChromaMate is designed with privacy as a core principle. We believe color picking should be a private activity, and we've built ChromaMate to respect your privacy completely.
+Colortron is designed with privacy as a core principle. We believe color picking should be a private activity, and we've built Colortron to respect your privacy completely.
 
-**Key Statement: ChromaMate collects NO personal data from your device or activity.**
+**Key Statement: Colortron collects NO personal data from your device or activity.**
 
 ## 2. Information We Do NOT Collect
 
-ChromaMate does NOT collect, store, or transmit:
+Colortron does NOT collect, store, or transmit:
 
 - ❌ Your location or GPS data
 - ❌ Your contacts or call history
@@ -42,7 +42,7 @@ ChromaMate does NOT collect, store, or transmit:
 - Your color picks are stored locally on your device only
 
 ### Optional Cloud Features
-- ChromoMate may offer optional cloud sync features in the future
+- Colortron may offer optional cloud sync features in the future
 - Any such features would use your personal iCloud or similar accounts
 - We would not access or store your data on our servers
 - Any cloud features would be entirely optional
@@ -54,7 +54,7 @@ ChromaMate does NOT collect, store, or transmit:
 
 ## 4. Automatic Data Collection
 
-ChromaMate does NOT use:
+Colortron does NOT use:
 - ❌ Analytics services (Google Analytics, Mixpanel, etc.)
 - ❌ Crash reporting services
 - ❌ Advertising networks
@@ -85,7 +85,7 @@ The only automatic data we collect is:
 
 ## 6. Third-Party Services
 
-ChromoMate uses minimal third-party services:
+Colortron uses minimal third-party services:
 
 ### Apple Services (Required)
 - **App Store**: For app distribution and in-app purchases
@@ -125,11 +125,11 @@ We comply with:
 - 🇬🇧 GDPR equivalent UK standards
 - 🌍 Other regional privacy regulations
 
-**Compliance Statement**: Since ChromoMate collects no personal data, GDPR, CCPA, and other privacy laws' provisions regarding user data largely don't apply. You have full control of your data on your device.
+**Compliance Statement**: Since Colortron collects no personal data, GDPR, CCPA, and other privacy laws' provisions regarding user data largely don't apply. You have full control of your data on your device.
 
 ## 10. Children's Privacy
 
-ChromoMate is suitable for all ages, including children:
+Colortron is suitable for all ages, including children:
 - We collect no personal information
 - We contain no ads or tracking
 - We contain no in-app messaging or social features
@@ -175,13 +175,13 @@ Questions about privacy?
 **Contact Methods:**
 - In-app support: Help > Contact Us
 - App Store: Reviews section
-- Website: privacy@chromamate.app
+- Website: privacy@colortron.app
 
 **Response Time:** We respond to privacy inquiries within 7 days.
 
 ## 14. Open-Source Transparency
 
-ChromoMate's core color processing is built on open-source libraries:
+Colortron's core color processing is built on open-source libraries:
 - You can audit the code used
 - No hidden tracking or data collection
 - Fully transparent color processing
