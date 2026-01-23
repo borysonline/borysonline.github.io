@@ -225,11 +225,6 @@ button:active, .button:active {
   .logo-icon {
     width: 32px;
     height: 32px;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-  
-  .logo:hover .logo-icon {
-    transform: rotate(10deg) scale(1.1);
   }
   
   .logo-text {
@@ -239,11 +234,6 @@ button:active, .button:active {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    transition: opacity 0.3s ease;
-  }
-  
-  .logo:hover .logo-text {
-    opacity: 0.8;
 }
 
 .nav-menu {
@@ -400,7 +390,7 @@ button:active, .button:active {
   .main {
     padding: 1.5rem 1rem;
     }
-    }
+}
     
     /* Animations */
     @keyframes fadeIn {
@@ -463,6 +453,7 @@ button:active, .button:active {
     .stagger-3 {
       animation-delay: 0.3s;
     }
+
 .stagger-4 {
   animation-delay: 0.4s;
 }
