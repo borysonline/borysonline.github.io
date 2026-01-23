@@ -172,7 +172,7 @@ Questions about privacy?
 **Contact Methods:**
 - In-app support: Help > Contact Us
 - App Store: Reviews section
-- Website: privacy@colortron.app
+- Website: contact@borysonline.com
 
 **Response Time:** We respond to privacy inquiries within 7 days.
 
