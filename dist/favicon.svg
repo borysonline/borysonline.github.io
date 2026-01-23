@@ -5,10 +5,10 @@
       <stop offset="100%" stop-color="#a855f7"/>
     </linearGradient>
   </defs>
-  <!-- Honeycomb Frame (The Factory) -->
+  <!-- Honeycomb Frame -->
   <path d="M50 5 L92 29 L92 71 L50 95 L8 71 L8 29 Z" stroke="url(#logoGradient)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
   <!-- App Icon -->
-  <circle cx="50" cy="42" r="20" fill="url(#logoGradient)"/>
+  <circle cx="50" cy="42" r="16" fill="url(#logoGradient)"/>
   <!-- Signature Title -->
-  <rect x="28" y="72" width="44" height="6" rx="3" fill="url(#logoGradient)"/>
+  <rect x="34" y="72" width="32" height="5" rx="2.5" fill="url(#logoGradient)"/>
 </svg>
