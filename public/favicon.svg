@@ -1,6 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <g fill="none" fill-rule="evenodd">
-    <circle cx="64" cy="64" r="64" fill="#3498db"/>
-    <text x="64" y="70" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="white" text-anchor="middle">B</text>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+  </defs>
+  <!-- Honeycomb Frame -->
+  <path d="M50 5 L92 29 L92 71 L50 95 L8 71 L8 29 Z" stroke="url(#logoGradient)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- App Icon -->
+  <circle cx="50" cy="42" r="16" fill="url(#logoGradient)"/>
+  <!-- Signature Title -->
+  <rect x="34" y="72" width="32" height="5" rx="2.5" fill="url(#logoGradient)"/>
 </svg>

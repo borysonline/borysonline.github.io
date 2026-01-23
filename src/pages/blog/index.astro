@@ -10,63 +10,108 @@ const sorted = blog
 ---
 
 <BaseLayout title="Blog - Borys Online" description="Read my latest blog posts">
-  <div class="blog-container">
-    <h1>Blog</h1>
-    <p class="subtitle">Thoughts, insights, and updates about development and technology.</p>
+  <div class="blog-page">
+    <header class="page-header animate-fade-in">
+      <span class="page-label">Insights</span>
+      <h1>
+        <span class="gradient-text">Blog</span>
+      </h1>
+      <p class="page-description">
+        Thoughts, insights, and updates about development, design, and technology.
+      </p>
+    </header>
 
     {sorted.length > 0 ? (
-      <div class="posts-list">
-        {sorted.map(post => (
-          <BlogPostCard
-            title={post.data.title}
-            description={post.data.description}
-            slug={post.slug}
-            pubDate={post.data.pubDate}
-            author={post.data.author}
-            categories={post.data.categories}
-          />
+      <div class="posts-grid">
+        {sorted.map((post, index) => (
+          <div class={`animate-slide-up stagger-${Math.min(index + 1, 5)}`} style="opacity: 0;">
+            <BlogPostCard
+              title={post.data.title}
+              description={post.data.description}
+              slug={post.slug}
+              pubDate={post.data.pubDate}
+              author={post.data.author}
+              categories={post.data.categories}
+            />
+          </div>
         ))}
       </div>
     ) : (
-      <p class="empty-state">No blog posts found yet. Check back soon!</p>
+      <div class="empty-state glass-card">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+        </svg>
+        <p>No blog posts found yet. Check back soon!</p>
+      </div>
     )}
   </div>
 </BaseLayout>
 
 <style>
-  .blog-container {
+  .blog-page {
     max-width: 900px;
     margin: 0 auto;
-    padding: 0 1rem;
   }
 
-  h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+  .page-header {
     text-align: center;
-  }
-
-  .subtitle {
-    text-align: center;
-    color: var(--color-muted);
-    font-size: 1.1rem;
     margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border);
   }
 
-  .posts-list {
-    margin: 0;
+  .page-label {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .page-header h1 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    margin-bottom: 1rem;
+  }
+
+  .page-description {
+    color: var(--color-muted);
+    font-size: 1.15rem;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .posts-grid {
+    display: grid;
+    gap: 1.5rem;
   }
 
   .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 4rem 2rem;
     text-align: center;
     color: var(--color-muted);
-    padding: 2rem 0;
+  }
+
+  .empty-state svg {
+    opacity: 0.5;
+  }
+
+  .empty-state p {
     font-size: 1.1rem;
+    margin: 0;
   }
 
   @media (max-width: 768px) {
-    h1 {
-      font-size: 1.8rem;
+    .page-description {
+      font-size: 1rem;
     }
   }
 </style>

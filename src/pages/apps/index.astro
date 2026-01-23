@@ -10,64 +10,111 @@ const sorted = apps.sort((a, b) =>
 ---
 
 <BaseLayout title="Applications - Borys Online" description="Browse all applications">
-  <div class="apps-container">
-    <h1>Applications</h1>
-    <p class="subtitle">A curated collection of useful applications and tools.</p>
+  <div class="apps-page">
+    <header class="page-header animate-fade-in">
+      <span class="page-label">Explore</span>
+      <h1>
+        <span class="gradient-text">Applications</span>
+      </h1>
+      <p class="page-description">
+        A curated collection of beautifully crafted applications and tools.
+      </p>
+    </header>
 
     {sorted.length > 0 ? (
-      <div class="apps-list">
-        {sorted.map(app => (
-          <AppCard
-            title={app.data.title}
-            description={app.data.description}
-            slug={app.slug}
-            version={app.data.version}
-            category={app.data.category}
-            icon={app.data.icon}
-            featured={app.data.featured}
-          />
+      <div class="apps-grid">
+        {sorted.map((app, index) => (
+          <div class={`animate-slide-up stagger-${Math.min(index + 1, 5)}`} style="opacity: 0;">
+            <AppCard
+              title={app.data.title}
+              description={app.data.description}
+              slug={app.slug}
+              version={app.data.version}
+              category={app.data.category}
+              icon={app.data.icon}
+              featured={app.data.featured}
+            />
+          </div>
         ))}
       </div>
     ) : (
-      <p class="empty-state">No applications found yet. Check back soon!</p>
+      <div class="empty-state glass-card">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="3" y="3" width="7" height="7" rx="1"/>
+          <rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="14" y="14" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/>
+        </svg>
+        <p>No applications found yet. Check back soon!</p>
+      </div>
     )}
   </div>
 </BaseLayout>
 
 <style>
-  .apps-container {
+  .apps-page {
     max-width: 900px;
     margin: 0 auto;
-    padding: 0 1rem;
   }
 
-  h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+  .page-header {
     text-align: center;
-  }
-
-  .subtitle {
-    text-align: center;
-    color: var(--color-muted);
-    font-size: 1.1rem;
     margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border);
   }
 
-  .apps-list {
-    margin: 0;
+  .page-label {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .page-header h1 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    margin-bottom: 1rem;
+  }
+
+  .page-description {
+    color: var(--color-muted);
+    font-size: 1.15rem;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .apps-grid {
+    display: grid;
+    gap: 1.5rem;
   }
 
   .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 4rem 2rem;
     text-align: center;
     color: var(--color-muted);
-    padding: 2rem 0;
+  }
+
+  .empty-state svg {
+    opacity: 0.5;
+  }
+
+  .empty-state p {
     font-size: 1.1rem;
+    margin: 0;
   }
 
   @media (max-width: 768px) {
-    h1 {
-      font-size: 1.8rem;
+    .page-description {
+      font-size: 1rem;
     }
   }
 </style>

@@ -12,6 +12,8 @@ const appSchema = z.object({
   github: z.string().url().optional(),
   website: z.string().url().optional(),
   downloadUrl: z.string().url().optional(),
+  appStoreUrl: z.string().url().optional(),
+  playStoreUrl: z.string().url().optional(),
   platforms: z.array(z.enum(['web', 'ios', 'android', 'windows', 'mac'])).default(['web']),
   downloads: z.number().optional(),
 });

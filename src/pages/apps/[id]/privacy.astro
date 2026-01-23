@@ -22,188 +22,296 @@ const { Content } = privacy
 ---
 
 <AppLayout title={`${app.data.title} - Privacy Policy`} description={`Privacy Policy for ${app.data.title}`}>
-  <div class="breadcrumb">
-    <a href="/apps/">Apps</a>
-    <span>/</span>
-    <a href={`/apps/${app.slug}/`}>{app.data.title}</a>
-    <span>/</span>
-    <span>Privacy Policy</span>
+  <div class="legal-page animate-fade-in">
+    <nav class="breadcrumb">
+      <a href="/apps/">Apps</a>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 18l6-6-6-6"/>
+      </svg>
+      <a href={`/apps/${app.slug}/`}>{app.data.title}</a>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 18l6-6-6-6"/>
+      </svg>
+      <span>Privacy Policy</span>
+    </nav>
+
+    <header class="page-header">
+      <span class="page-label">Legal</span>
+      <h1>Privacy Policy</h1>
+      <h2 class="gradient-text">{app.data.title}</h2>
+    </header>
+
+    {privacy && (
+      <div class="meta-card glass-card">
+        {privacy.data.version && (
+          <div class="meta-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 20h9"/>
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+            </svg>
+            <span>Version {privacy.data.version}</span>
+          </div>
+        )}
+        <div class="meta-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+          <span>Last updated: {privacy.data.lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+        </div>
+      </div>
+    )}
+
+    {Content ? (
+      <div class="legal-content">
+        <Content />
+      </div>
+    ) : (
+      <div class="placeholder glass-card">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <p>Privacy Policy for this application is not yet available. Please check back soon or contact the developer for more information.</p>
+      </div>
+    )}
+
+    {privacy && privacy.data.dataCollection && privacy.data.dataCollection.length > 0 && (
+      <section class="data-section glass-card">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <ellipse cx="12" cy="5" rx="9" ry="3"/>
+            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+          </svg>
+          Data We Collect
+        </h3>
+        <ul>
+          {privacy.data.dataCollection.map(item => <li>{item}</li>)}
+        </ul>
+      </section>
+    )}
+
+    {privacy && privacy.data.thirdParties && privacy.data.thirdParties.length > 0 && (
+      <section class="data-section glass-card">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+          Third-Party Services
+        </h3>
+        <p>This application uses the following third-party services:</p>
+        <ul>
+          {privacy.data.thirdParties.map(party => <li>{party}</li>)}
+        </ul>
+      </section>
+    )}
+
+    <nav class="page-nav">
+      <a href={`/apps/${app.slug}/`} class="nav-button">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Back to {app.data.title}
+      </a>
+      <a href={`/apps/${app.slug}/terms/`} class="nav-button nav-button-primary">
+        Terms of Use
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </nav>
   </div>
-
-  <h1>Privacy Policy</h1>
-  <h2>{app.data.title}</h2>
-
-  {privacy && (
-    <div class="meta">
-      {privacy.data.version && <p class="version">Version {privacy.data.version}</p>}
-      <p class="updated">Last updated: {privacy.data.lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-    </div>
-  )}
-
-  {Content ? (
-    <div class="privacy-content">
-      <Content />
-    </div>
-  ) : (
-    <div class="placeholder">
-      <p>Privacy Policy for this application is not yet available. Please check back soon or contact the developer for more information.</p>
-    </div>
-  )}
-
-  {privacy && privacy.data.dataCollection && privacy.data.dataCollection.length > 0 && (
-    <section class="data-section">
-      <h3>Data We Collect</h3>
-      <ul>
-        {privacy.data.dataCollection.map(item => <li>{item}</li>)}
-      </ul>
-    </section>
-  )}
-
-  {privacy && privacy.data.thirdParties && privacy.data.thirdParties.length > 0 && (
-    <section class="data-section">
-      <h3>Third-Party Services</h3>
-      <p>This application uses the following third-party services:</p>
-      <ul>
-        {privacy.data.thirdParties.map(party => <li>{party}</li>)}
-      </ul>
-    </section>
-  )}
-
-  <nav class="app-nav">
-    <a href={`/apps/${app.slug}/`} class="nav-button">← Back to {app.data.title}</a>
-    <a href={`/apps/${app.slug}/terms/`} class="nav-button">Terms of Use →</a>
-  </nav>
 </AppLayout>
 
 <style>
+  .legal-page {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
   .breadcrumb {
     display: flex;
+    align-items: center;
     gap: 0.5rem;
     margin-bottom: 2rem;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--color-muted);
+    flex-wrap: wrap;
   }
 
   .breadcrumb a {
-    color: var(--color-link);
+    color: var(--color-accent);
     text-decoration: none;
+    transition: var(--transition-fast);
   }
 
   .breadcrumb a:hover {
-    text-decoration: underline;
+    color: var(--color-accent-hover);
   }
 
-  h1 {
+  .page-header {
+    margin-bottom: 2rem;
+  }
+
+  .page-label {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .page-header h1 {
     font-size: 2rem;
     margin-bottom: 0.5rem;
   }
 
-  h2 {
+  .page-header h2 {
     font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--color-link);
+    margin: 0;
   }
 
-  .meta {
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border);
-    border-radius: 6px;
-    padding: 1rem;
+  .meta-card {
+    display: flex;
+    gap: 2rem;
+    padding: 1rem 1.5rem;
     margin-bottom: 2rem;
-    font-size: 0.95rem;
+    flex-wrap: wrap;
   }
 
-  .meta p {
-    margin: 0.25rem 0;
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     color: var(--color-muted);
+    font-size: 0.9rem;
   }
 
-  .version {
-    font-weight: 500;
-  }
-
-  .privacy-content {
+  .legal-content {
     font-size: 1.05rem;
     line-height: 1.8;
     margin-bottom: 2rem;
   }
 
-  .privacy-content :global(h3) {
+  .legal-content :global(h1),
+  .legal-content :global(h2) {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: var(--color-primary);
+  }
+
+  .legal-content :global(h3) {
     margin-top: 2rem;
-    margin-bottom: 1rem;
-    font-size: 1.3rem;
-  }
-
-  .privacy-content :global(h4) {
-    margin-top: 1.5rem;
     margin-bottom: 0.75rem;
+    font-size: 1.25rem;
   }
 
-  .privacy-content :global(p) {
+  .legal-content :global(p) {
     margin-bottom: 1rem;
   }
 
-  .privacy-content :global(ul),
-  .privacy-content :global(ol) {
-    margin-left: 2rem;
+  .legal-content :global(ul),
+  .legal-content :global(ol) {
+    margin-left: 1.5rem;
     margin-bottom: 1rem;
   }
 
-  .privacy-content :global(li) {
+  .legal-content :global(li) {
     margin-bottom: 0.5rem;
   }
 
   .placeholder {
-    background: var(--color-bg-secondary);
-    border: 1px dashed var(--color-border);
-    border-radius: 6px;
-    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 4rem 2rem;
     text-align: center;
     color: var(--color-muted);
+    margin-bottom: 2rem;
+  }
+
+  .placeholder svg {
+    opacity: 0.5;
   }
 
   .data-section {
-    background: var(--color-bg-secondary);
-    border-left: 4px solid var(--color-link);
     padding: 1.5rem;
-    margin: 2rem 0;
-    border-radius: 4px;
+    margin-bottom: 1.5rem;
   }
 
   .data-section h3 {
-    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    font-weight: 600;
     color: var(--color-primary);
   }
 
   .data-section ul {
-    margin-bottom: 0;
+    margin: 0 0 0 1.5rem;
   }
 
-  .app-nav {
+  .data-section li {
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+  }
+
+  .data-section p {
+    color: var(--color-muted);
+    margin-bottom: 1rem;
+  }
+
+  .page-nav {
     display: flex;
     justify-content: space-between;
     gap: 1rem;
-    margin-top: 3rem;
     padding-top: 2rem;
     border-top: 1px solid var(--color-border);
     flex-wrap: wrap;
   }
 
   .nav-button {
-    flex: 1;
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    border: 1px solid var(--color-border);
-    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    border-radius: var(--radius-md);
     text-decoration: none;
-    color: var(--color-link);
-    font-weight: 500;
-    text-align: center;
+    font-weight: 600;
     transition: var(--transition);
+    background: var(--color-bg-secondary);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
   }
 
   .nav-button:hover {
-    background: var(--color-bg-secondary);
+    background: var(--color-bg-tertiary);
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .nav-button-primary {
+    background: var(--color-gradient);
+    color: white;
+    border: none;
+  }
+
+  .nav-button-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+    color: white;
   }
 
   @media (max-width: 768px) {
@@ -211,12 +319,12 @@ const { Content } = privacy
       font-size: 0.85rem;
     }
 
-    .app-nav {
+    .page-nav {
       flex-direction: column;
     }
 
     .nav-button {
-      width: 100%;
+      justify-content: center;
     }
   }
 </style>

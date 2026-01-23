@@ -2,13 +2,14 @@
 title: "Colortron"
 description: "Fast and intuitive color picker for iOS. Capture, edit, and organize colors. Free to use with all core features included."
 category: "utility"
+icon: "/icons/colortron.jpg"
 releaseDate: 2025-12-28
 featured: true
 tags: ["color-picker", "design", "photography", "utility"]
 github: "https://github.com/borysonline/colortron"
 website: "https://colortron.app"
-downloadUrl: "https://apps.apple.com/app/colortron/id123456789"
-platforms: ["ios", "android"]
+appStoreUrl: "https://apps.apple.com/app/colortron/id6757682314"
+platforms: ["ios"]
 ---
 
 ## About Colortron

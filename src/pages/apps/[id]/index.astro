@@ -16,63 +16,169 @@ const { Content } = await app.render();
 ---
 
 <AppLayout title={app.data.title} description={app.data.description}>
-  <div class="app-header">
-    {app.data.icon && (
-      <img src={app.data.icon} alt={app.data.title} class="app-icon" />
+  <div class="app-detail animate-fade-in">
+    <div class="app-header glass-card">
+      <div class="app-header-content">
+        {app.data.icon ? (
+          <img src={app.data.icon} alt={app.data.title} class="app-icon" />
+        ) : (
+          <div class="app-icon app-icon-placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="7" height="7" rx="1"/>
+              <rect x="14" y="3" width="7" height="7" rx="1"/>
+              <rect x="14" y="14" width="7" height="7" rx="1"/>
+              <rect x="3" y="14" width="7" height="7" rx="1"/>
+            </svg>
+          </div>
+        )}
+        <div class="app-title-section">
+          <h1 class="gradient-text">{app.data.title}</h1>
+          <div class="app-metadata">
+            <span class="badge badge-gradient">{app.data.category}</span>
+            {app.data.version && <span class="badge badge-glass">v{app.data.version}</span>}
+          </div>
+        </div>
+      </div>
+      {app.data.featured && (
+        <div class="featured-ribbon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          Featured App
+        </div>
+      )}
+    </div>
+
+    <div class="app-content">
+      <Content />
+    </div>
+
+    {(app.data.appStoreUrl || app.data.playStoreUrl) && (
+      <div class="download-section glass-card">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download
+        </h3>
+        <div class="download-buttons">
+          {app.data.appStoreUrl && (
+            <a href={app.data.appStoreUrl} target="_blank" rel="noopener noreferrer" class="store-button app-store">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+              </svg>
+              <div class="store-text">
+                <span class="store-label">Download on the</span>
+                <span class="store-name">App Store</span>
+              </div>
+            </a>
+          )}
+          {app.data.playStoreUrl && (
+            <a href={app.data.playStoreUrl} target="_blank" rel="noopener noreferrer" class="store-button play-store">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+              </svg>
+              <div class="store-text">
+                <span class="store-label">GET IT ON</span>
+                <span class="store-name">Google Play</span>
+              </div>
+            </a>
+          )}
+        </div>
+      </div>
     )}
-    <div class="app-title-section">
-      <h1>{app.data.title}</h1>
-      <div class="app-metadata">
-        <span class="badge badge-category">{app.data.category}</span>
-        {app.data.version && <span class="badge badge-version">v{app.data.version}</span>}
+
+    {app.data.platforms && app.data.platforms.length > 0 && (
+      <div class="platforms glass-card">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+            <line x1="8" y1="21" x2="16" y2="21"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+          Available on
+        </h3>
+        <div class="platform-badges">
+          {app.data.platforms.map(platform => (
+            <span class="platform-badge badge badge-glass">{platform}</span>
+          ))}
+        </div>
       </div>
-    </div>
-  </div>
+    )}
 
-  <div class="app-content">
-    <Content />
-  </div>
-
-  {app.data.platforms && app.data.platforms.length > 0 && (
-    <div class="platforms">
-      <h3>Available on</h3>
-      <div class="platform-badges">
-        {app.data.platforms.map(platform => (
-          <span class="platform-badge">{platform}</span>
-        ))}
+    <nav class="app-nav glass-card">
+      <h3>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+        Documentation
+      </h3>
+      <div class="nav-links">
+        <a href={`/apps/${app.slug}/terms/`} class="nav-link">
+          <span>Terms of Use</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <a href={`/apps/${app.slug}/privacy/`} class="nav-link">
+          <span>Privacy Policy</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
       </div>
+    </nav>
+
+    <div class="back-link">
+      <a href="/apps/">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Back to Applications
+      </a>
     </div>
-  )}
-
-  <nav class="app-nav">
-    <h3>Documentation</h3>
-    <ul>
-      <li><a href={`/apps/${app.slug}/terms/`}>Terms of Use</a></li>
-      <li><a href={`/apps/${app.slug}/privacy/`}>Privacy Policy</a></li>
-    </ul>
-  </nav>
-
-  <div class="back-link">
-    <a href="/apps/">← Back to Applications</a>
   </div>
 </AppLayout>
 
 <style>
+  .app-detail {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
   .app-header {
-    display: flex;
-    gap: 2rem;
+    position: relative;
+    padding: 2rem;
     margin-bottom: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+
+  .app-header-content {
+    display: flex;
+    gap: 1.5rem;
     align-items: flex-start;
   }
 
   .app-icon {
-    width: 120px;
-    height: 120px;
-    border-radius: 12px;
+    width: 100px;
+    height: 100px;
+    border-radius: var(--radius-lg);
     object-fit: cover;
     flex-shrink: 0;
+  }
+
+  .app-icon-placeholder {
+    background: var(--color-bg-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-muted);
   }
 
   .app-title-section {
@@ -81,50 +187,50 @@ const { Content } = await app.render();
 
   .app-title-section h1 {
     margin: 0 0 1rem 0;
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 4vw, 2.5rem);
   }
 
   .app-metadata {
     display: flex;
-    gap: 1rem;
+    gap: 0.75rem;
     flex-wrap: wrap;
   }
 
-  .badge {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    border-radius: 12px;
-    font-size: 0.9rem;
-    font-weight: 500;
-  }
-
-  .badge-category {
-    background: var(--color-link);
+  .featured-ribbon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: var(--color-gradient);
     color: white;
-    text-transform: capitalize;
-  }
-
-  .badge-version {
-    background: var(--color-bg-secondary);
-    color: var(--color-muted);
   }
 
   .app-content {
     font-size: 1.05rem;
     line-height: 1.8;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
 
   .app-content :global(h2) {
-    margin-top: 2rem;
+    margin-top: 2.5rem;
     margin-bottom: 1rem;
-    font-size: 1.8rem;
+    font-size: 1.75rem;
+    color: var(--color-primary);
   }
 
   .app-content :global(h3) {
-    margin-top: 1.5rem;
+    margin-top: 2rem;
     margin-bottom: 0.75rem;
-    font-size: 1.4rem;
+    font-size: 1.35rem;
+    color: var(--color-primary);
   }
 
   .app-content :global(p) {
@@ -133,7 +239,7 @@ const { Content } = await app.render();
 
   .app-content :global(ul),
   .app-content :global(ol) {
-    margin-left: 2rem;
+    margin-left: 1.5rem;
     margin-bottom: 1rem;
   }
 
@@ -141,106 +247,131 @@ const { Content } = await app.render();
     margin-bottom: 0.5rem;
   }
 
-  .app-content :global(img) {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin: 1.5rem 0;
+  .app-content :global(strong) {
+    color: var(--color-primary);
+    font-weight: 600;
   }
 
-  .app-actions {
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-    padding: 2rem;
-    margin: 2rem 0;
+  .download-section {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
   }
 
-  .app-actions h3 {
-    margin-top: 0;
-    margin-bottom: 1rem;
+  .download-section h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-primary);
   }
 
-  .action-buttons {
+  .download-buttons {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
   }
 
-  .button {
-    display: inline-block;
-    background: var(--color-link);
+  .store-button {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: var(--transition);
+    min-width: 180px;
+  }
+
+  .store-button.app-store {
+    background: #000;
     color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 6px;
+  }
+
+  .store-button.play-store {
+    background: #000;
+    color: white;
+  }
+
+  .store-button:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .store-button svg {
+    flex-shrink: 0;
+  }
+
+  .store-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .store-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.9;
+  }
+
+  .store-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .platforms, .app-nav {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .platforms h3, .app-nav h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .platform-badges {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.875rem 1rem;
+    background: var(--color-bg-tertiary);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
     text-decoration: none;
     font-weight: 500;
     transition: var(--transition);
   }
 
-  .button:hover {
-    background: var(--color-link-hover);
+  .nav-link:hover {
+    background: var(--color-accent);
+    color: white;
   }
 
-  .platforms {
-    margin: 2rem 0;
-    padding: 1.5rem;
-    background: var(--color-bg-secondary);
-    border-radius: 6px;
+  .nav-link svg {
+    transition: var(--transition-fast);
   }
 
-  .platforms h3 {
-    margin-top: 0;
-    margin-bottom: 1rem;
-  }
-
-  .platform-badges {
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-  }
-
-  .platform-badge {
-    display: inline-block;
-    background: white;
-    border: 1px solid var(--color-border);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    text-transform: capitalize;
-  }
-
-  .app-nav {
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border);
-    border-radius: 6px;
-    padding: 1.5rem;
-    margin: 2rem 0;
-  }
-
-  .app-nav h3 {
-    margin-top: 0;
-    margin-bottom: 1rem;
-  }
-
-  .app-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .app-nav li {
-    margin-bottom: 0.5rem;
-  }
-
-  .app-nav a {
-    color: var(--color-link);
-    text-decoration: none;
-    font-weight: 500;
-  }
-
-  .app-nav a:hover {
-    text-decoration: underline;
+  .nav-link:hover svg {
+    transform: translateX(4px);
   }
 
   .back-link {
@@ -250,32 +381,41 @@ const { Content } = await app.render();
   }
 
   .back-link a {
-    color: var(--color-link);
-    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-accent);
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+  }
+
+  .back-link a:hover {
+    color: var(--color-accent-hover);
+  }
+
+  .back-link a:hover svg {
+    transform: translateX(-4px);
+  }
+
+  .back-link svg {
+    transition: var(--transition-fast);
   }
 
   @media (max-width: 768px) {
-    .app-header {
+    .app-header-content {
       flex-direction: column;
       gap: 1rem;
     }
 
     .app-icon {
-      width: 100px;
-      height: 100px;
+      width: 80px;
+      height: 80px;
     }
 
-    .app-title-section h1 {
-      font-size: 1.8rem;
-    }
-
-    .action-buttons {
-      flex-direction: column;
-    }
-
-    .button {
-      width: 100%;
-      text-align: center;
+    .featured-ribbon {
+      position: static;
+      margin-top: 1rem;
     }
   }
 </style>

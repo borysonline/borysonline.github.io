@@ -19,6 +19,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     
+    <!-- Google Fonts - Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="image" content={image} />
@@ -44,7 +49,23 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <div class="container">
       <header class="header">
         <nav class="nav">
-          <a href="/" class="logo">Borys Online</a>
+          <a href="/" class="logo">
+            <svg class="logo-icon animate-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="headerLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="var(--color-gradient-start)"/>
+                  <stop offset="100%" stop-color="var(--color-gradient-end)"/>
+                </linearGradient>
+              </defs>
+              <!-- Honeycomb Frame -->
+              <path d="M50 5 L92 29 L92 71 L50 95 L8 71 L8 29 Z" stroke="url(#headerLogoGradient)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <!-- App Icon -->
+              <circle cx="50" cy="42" r="16" fill="url(#headerLogoGradient)"/>
+              <!-- Icon Signature -->
+              <rect x="34" y="72" width="32" height="5" rx="2.5" fill="url(#headerLogoGradient)"/>
+            </svg>
+            <span class="logo-text">Borys Online</span>
+          </a>
           <ul class="nav-menu">
             <li><a href="/">Home</a></li>
             <li><a href="/apps/">Apps</a></li>
@@ -58,12 +79,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       </main>
 
       <footer class="footer">
-        <p>&copy; 2025 Borys Online. All rights reserved.</p>
-        <nav class="footer-nav">
-          <a href="/apps/">Apps</a>
-          <a href="/blog/">Blog</a>
-          <a href="/feed.xml">RSS</a>
-        </nav>
+        <div class="footer-content">
+          <p>&copy; 2026 Borys Online. All rights reserved.</p>
+          <nav class="footer-nav">
+            <a href="/apps/">Apps</a>
+            <a href="/blog/">Blog</a>
+            <a href="/feed.xml">RSS</a>
+          </nav>
+        </div>
       </footer>
     </div>
   </body>

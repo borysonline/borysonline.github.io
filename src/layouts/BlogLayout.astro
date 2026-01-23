@@ -14,22 +14,37 @@ const { title, description, pubDate, categories, author = 'Borys' } = Astro.prop
 ---
 
 <BaseLayout title={title} description={description}>
-  <article class="article">
-    <header class="article-header">
-      <h1>{title}</h1>
+  <article class="article animate-fade-in">
+    <header class="article-header glass-card">
+      {categories && categories.length > 0 && (
+        <div class="article-categories">
+          {categories.map((cat) => (
+            <span class="category badge badge-gradient">{cat}</span>
+          ))}
+        </div>
+      )}
+      <h1 class="gradient-text">{title}</h1>
+      
       {pubDate && (
         <div class="article-meta">
-          <time datetime={pubDate.toISOString()}>
-            {formatDate(pubDate)}
-          </time>
-          {author && <span class="author">by {author}</span>}
-          {categories && categories.length > 0 && (
-            <div class="categories">
-              {categories.map((cat) => (
-                <span class="category">{cat}</span>
-              ))}
-            </div>
-          )}
+          <div class="meta-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            <time datetime={pubDate.toISOString()}>
+              {formatDate(pubDate)}
+            </time>
+          </div>
+          <div class="meta-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span class="author">{author}</span>
+          </div>
         </div>
       )}
     </header>
@@ -42,102 +57,152 @@ const { title, description, pubDate, categories, author = 'Borys' } = Astro.prop
 
 <style>
   .article {
-    max-width: 800px;
+    max-width: 850px;
     margin: 2rem auto;
-    padding: 0 1rem;
+    padding: 0 1.5rem;
   }
 
   .article-header {
-    margin-bottom: 2rem;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    text-align: center;
+    align-items: center;
+  }
+
+  .article-categories {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .article-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: var(--color-primary);
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
+    margin: 0;
   }
 
   .article-meta {
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
     flex-wrap: wrap;
+    justify-content: center;
     color: var(--color-muted);
     font-size: 0.95rem;
+    margin-top: 0.5rem;
   }
 
-  .article-meta time {
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-weight: 500;
   }
 
-  .categories {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
-
-  .category {
-    display: inline-block;
-    background: var(--color-bg-secondary);
-    padding: 0.25rem 0.75rem;
-    border-radius: 4px;
-    font-size: 0.85rem;
-  }
-
   .article-content {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     line-height: 1.8;
     color: var(--color-text);
   }
 
   .article-content :global(h2) {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    font-size: 1.8rem;
+    margin-top: 3rem;
+    margin-bottom: 1.25rem;
+    font-size: 2rem;
     color: var(--color-primary);
+    font-weight: 700;
   }
 
   .article-content :global(h3) {
-    margin-top: 1.5rem;
-    margin-bottom: 0.75rem;
-    font-size: 1.4rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    font-weight: 600;
   }
 
   .article-content :global(p) {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
   }
 
   .article-content :global(a) {
-    color: var(--color-link);
+    color: var(--color-accent);
     text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+    transition: var(--transition-fast);
   }
 
   .article-content :global(a:hover) {
-    text-decoration: underline;
+    color: var(--color-accent-hover);
+    border-bottom-color: var(--color-accent-hover);
   }
 
-  .article-content :global(code) {
-    background: var(--color-bg-secondary);
-    padding: 0.2rem 0.5rem;
-    border-radius: 3px;
-    font-family: 'Courier New', monospace;
+  .article-content :global(code:not(pre code)) {
+    background: var(--color-bg-tertiary);
+    color: var(--color-accent);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: var(--font-mono);
     font-size: 0.9em;
   }
 
   .article-content :global(pre) {
-    background: var(--color-bg-secondary);
-    padding: 1rem;
-    border-radius: 4px;
+    background: var(--color-bg-tertiary) !important;
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
     overflow-x: auto;
-    margin: 1rem 0;
+    margin: 2rem 0;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .article-content :global(pre code) {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    line-height: 1.6;
   }
 
   .article-content :global(ul),
   .article-content :global(ol) {
-    margin-left: 2rem;
-    margin-bottom: 1rem;
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
   }
 
   .article-content :global(li) {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+  }
+
+  .article-content :global(blockquote) {
+    margin: 2rem 0;
+    padding: 1rem 1.5rem;
+    border-left: 4px solid var(--color-accent);
+    background: var(--color-bg-tertiary);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    font-style: italic;
+    color: var(--color-text-muted);
+  }
+
+  .article-content :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    margin: 2rem 0;
+    box-shadow: var(--shadow-md);
+  }
+
+  @media (max-width: 768px) {
+    .article-header {
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .article-meta {
+      gap: 1rem;
+    }
   }
 </style>
