@@ -1,7 +1,6 @@
 ---
 appId: "colortron"
 lastUpdated: 2025-12-28
-version: "1.0"
 dataCollection: []
 thirdParties: []
 ---
@@ -62,8 +61,6 @@ Colortron does NOT use:
 - ❌ Third-party SDKs for data collection
 
 The only automatic data we collect is:
-- App version you're using (for security updates)
-- iOS version (for compatibility testing)
 - Basic performance metrics (crash logs stored locally)
 
 ## 5. Permissions We Request

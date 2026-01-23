@@ -5,7 +5,7 @@ const appSchema = z.object({
   description: z.string(),
   category: z.enum(['productivity', 'utility', 'game', 'education', 'other']).default('other'),
   icon: z.string().optional(),
-  version: z.string().default('1.0.0'),
+  version: z.string().optional(),
   releaseDate: z.date(),
   featured: z.boolean().default(false),
   tags: z.array(z.string()).optional(),
@@ -29,13 +29,13 @@ const blogSchema = z.object({
 const termsSchema = z.object({
   appId: z.string(),
   lastUpdated: z.date(),
-  version: z.string().default('1.0'),
+  version: z.string().optional(),
 });
 
 const privacySchema = z.object({
   appId: z.string(),
   lastUpdated: z.date(),
-  version: z.string().default('1.0'),
+  version: z.string().optional(),
   dataCollection: z.array(z.string()).optional(),
   thirdParties: z.array(z.string()).optional(),
 });

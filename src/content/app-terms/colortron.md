@@ -1,7 +1,6 @@
 ---
 appId: "colortron"
 lastUpdated: 2025-12-28
-version: "1.0"
 ---
 
 # Terms of Use for Colortron

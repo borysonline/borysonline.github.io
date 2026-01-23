@@ -35,7 +35,7 @@ const { Content } = terms
 
   {terms && (
     <div class="meta">
-      <p class="version">Version {terms.data.version}</p>
+      {terms.data.version && <p class="version">Version {terms.data.version}</p>}
       <p class="updated">Last updated: {terms.data.lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
     </div>
   )}

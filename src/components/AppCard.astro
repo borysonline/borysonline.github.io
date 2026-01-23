@@ -3,7 +3,7 @@ export interface Props {
   title: string;
   description: string;
   slug: string;
-  version: string;
+  version?: string;
   category: string;
   icon?: string;
   featured?: boolean;
@@ -24,7 +24,7 @@ const { title, description, slug, version, category, icon, featured } = Astro.pr
     
     <div class="app-meta">
       <span class="category">{category}</span>
-      <span class="version">v{version}</span>
+      {version && <span class="version">v{version}</span>}
     </div>
     
     <p class="description">{description}</p>

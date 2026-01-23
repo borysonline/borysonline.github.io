@@ -24,7 +24,7 @@ const { Content } = await app.render();
       <h1>{app.data.title}</h1>
       <div class="app-metadata">
         <span class="badge badge-category">{app.data.category}</span>
-        <span class="badge badge-version">v{app.data.version}</span>
+        {app.data.version && <span class="badge badge-version">v{app.data.version}</span>}
       </div>
     </div>
   </div>
