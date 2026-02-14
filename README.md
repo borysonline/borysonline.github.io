@@ -2,6 +2,9 @@
 
 Personal website and applications catalog built with Astro and hosted on GitHub Pages.
 
+Factory integration notes:
+- `FACTORY_INTEGRATION.md`
+
 ## Local Development
 
 ```bash
@@ -20,4 +23,3 @@ pnpm run build
 ## Deployment
 
 Push to the main branch to deploy automatically via GitHub Actions.
-
