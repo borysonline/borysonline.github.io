@@ -4,7 +4,7 @@
 This repo owns public app pages and should stay synchronized with app factory registry.
 
 ## Source of truth
-From colortron repo:
+From apps repo:
 - `config/apps_registry.yaml`
 - `config/template_manifest.yaml`
 - `config/metadata.yaml`

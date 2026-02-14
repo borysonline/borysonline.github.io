@@ -6,7 +6,7 @@ icon: "/icons/colortron.jpg"
 releaseDate: 2025-12-28
 featured: true
 tags: ["color-picker", "design", "photography", "utility"]
-github: "https://github.com/borysonline/colortron"
+github: "https://github.com/borysonline/apps"
 website: "https://colortron.app"
 appStoreUrl: "https://apps.apple.com/app/colortron/id6757682314"
 platforms: ["ios"]
