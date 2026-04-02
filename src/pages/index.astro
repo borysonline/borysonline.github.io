@@ -1,16 +1,19 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
-import AppCard from '@components/AppCard.astro';
-import BlogPostCard from '@components/BlogPostCard.astro';
+import { getCollection } from "astro:content";
+import AppCard from "@components/AppCard.astro";
+import BlogPostCard from "@components/BlogPostCard.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 
-const apps = await getCollection('apps');
-const blog = await getCollection('blog');
+const apps = await getCollection("apps");
+const blog = await getCollection("blog");
 
-const featuredApps = apps.filter(app => app.data.featured).slice(0, 3);
+const featuredApps = apps.filter((app) => app.data.featured).slice(0, 3);
 const recentPosts = blog
-  .filter(post => !post.data.draft)
-  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
+  .filter((post) => !post.data.draft)
+  .sort(
+    (a, b) =>
+      new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
+  )
   .slice(0, 3);
 ---
 

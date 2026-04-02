@@ -1,12 +1,15 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
-import BlogPostCard from '@components/BlogPostCard.astro';
+import { getCollection } from "astro:content";
+import BlogPostCard from "@components/BlogPostCard.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 
-const blog = await getCollection('blog');
+const blog = await getCollection("blog");
 const sorted = blog
-  .filter(post => !post.data.draft)
-  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+  .filter((post) => !post.data.draft)
+  .sort(
+    (a, b) =>
+      new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
+  );
 ---
 
 <BaseLayout title="Blog - Borys Online" description="Read my latest blog posts">

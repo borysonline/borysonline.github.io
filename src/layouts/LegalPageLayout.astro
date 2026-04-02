@@ -1,5 +1,5 @@
 ---
-import BaseLayout from './BaseLayout.astro';
+import BaseLayout from "./BaseLayout.astro";
 
 export interface Props {
   title: string;
@@ -8,12 +8,7 @@ export interface Props {
   updatedAt: string;
 }
 
-const {
-  title,
-  description,
-  eyebrow = 'Legal',
-  updatedAt,
-} = Astro.props;
+const { title, description, eyebrow = "Legal", updatedAt } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>

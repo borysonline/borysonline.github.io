@@ -1,5 +1,5 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
 
 export interface Props {
   title: string;
@@ -7,7 +7,11 @@ export interface Props {
   image?: string;
 }
 
-const { title, description = 'Borys Online - Apps & Blog', image = '/og-image.svg' } = Astro.props;
+const {
+  title,
+  description = "Borys Online - Apps & Blog",
+  image = "/og-image.svg",
+} = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const imageURL = image ? new URL(image, Astro.site).toString() : undefined;
 ---

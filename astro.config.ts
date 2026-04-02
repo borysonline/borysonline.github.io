@@ -1,19 +1,19 @@
-import sitemap from '@astrojs/sitemap';
-import { defineConfig } from 'astro/config';
+import sitemap from "@astrojs/sitemap";
+import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: 'https://borysonline.com',
+  site: "https://borysonline.com",
   integrations: [sitemap()],
   markdown: {
     shikiConfig: {
-      theme: 'github-dark',
+      theme: "github-dark",
       wrap: true,
     },
   },
-  output: 'static',
+  output: "static",
   vite: {
     build: {
-      minify: 'terser',
+      minify: "terser",
     },
   },
 });

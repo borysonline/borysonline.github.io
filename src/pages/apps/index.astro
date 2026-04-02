@@ -1,11 +1,13 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
-import AppCard from '@components/AppCard.astro';
+import { getCollection } from "astro:content";
+import AppCard from "@components/AppCard.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 
-const apps = await getCollection('apps');
-const sorted = apps.sort((a, b) => 
-  new Date(b.data.releaseDate).getTime() - new Date(a.data.releaseDate).getTime()
+const apps = await getCollection("apps");
+const sorted = apps.sort(
+  (a, b) =>
+    new Date(b.data.releaseDate).getTime() -
+    new Date(a.data.releaseDate).getTime(),
 );
 ---
 

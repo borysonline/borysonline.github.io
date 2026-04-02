@@ -1,6 +1,6 @@
 ---
-import BaseLayout from './BaseLayout.astro';
-import { formatDate } from '@utils/formatDate';
+import { formatDate } from "@utils/formatDate";
+import BaseLayout from "./BaseLayout.astro";
 
 export interface Props {
   title: string;
@@ -10,7 +10,13 @@ export interface Props {
   author?: string;
 }
 
-const { title, description, pubDate, categories, author = 'Borys' } = Astro.props;
+const {
+  title,
+  description,
+  pubDate,
+  categories,
+  author = "Borys",
+} = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>

@@ -8,15 +8,13 @@ export interface Props {
   icon?: string;
   featured?: boolean;
 }
-
-const { title, description, slug, version, category, icon, featured } = Astro.props;
 ---
 
-<article class="app-card glass-card" class:list={{ featured }}>
+<article class="app-card glass-card" class:list={{ featured: Astro.props.featured }}>
   <div class="app-card-inner">
-    {icon ? (
+    {Astro.props.icon ? (
       <div class="app-icon">
-        <img src={icon} alt={title} />
+        <img src={Astro.props.icon} alt={Astro.props.title} />
       </div>
     ) : (
       <div class="app-icon app-icon-placeholder">
@@ -31,8 +29,8 @@ const { title, description, slug, version, category, icon, featured } = Astro.pr
     
     <div class="app-info">
       <div class="app-header">
-        <h3><a href={`/apps/${slug}/`}>{title}</a></h3>
-        {featured && (
+        <h3><a href={`/apps/${Astro.props.slug}/`}>{Astro.props.title}</a></h3>
+        {Astro.props.featured && (
           <span class="featured-badge">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
@@ -43,22 +41,22 @@ const { title, description, slug, version, category, icon, featured } = Astro.pr
       </div>
       
       <div class="app-meta">
-        <span class="category badge badge-gradient">{category}</span>
-        {version && <span class="version badge badge-glass">v{version}</span>}
+        <span class="category badge badge-gradient">{Astro.props.category}</span>
+        {Astro.props.version && <span class="version badge badge-glass">v{Astro.props.version}</span>}
       </div>
       
-      <p class="description">{description}</p>
+      <p class="description">{Astro.props.description}</p>
       
       <div class="app-links">
-        <a href={`/apps/${slug}/`} class="view-app">
+        <a href={`/apps/${Astro.props.slug}/`} class="view-app">
           View Details
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
         </a>
         <div class="meta-links">
-          <a href={`/apps/${slug}/terms/`} class="meta-link">Terms</a>
-          <a href={`/apps/${slug}/privacy/`} class="meta-link">Privacy</a>
+          <a href={`/apps/${Astro.props.slug}/terms/`} class="meta-link">Terms</a>
+          <a href={`/apps/${Astro.props.slug}/privacy/`} class="meta-link">Privacy</a>
         </div>
       </div>
     </div>
