@@ -1,18 +1,18 @@
 ---
 import AppLayout from '@layouts/AppLayout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
   const apps = await getCollection('apps');
   
   return apps.map(app => ({
-    params: { id: app.slug },
+    params: { id: app.id },
     props: { app },
   }));
 }
 
 const { app } = Astro.props;
-const { Content } = await app.render();
+const { Content } = await render(app);
 ---
 
 <AppLayout title={app.data.title} description={app.data.description}>
@@ -122,13 +122,13 @@ const { Content } = await app.render();
         Documentation
       </h3>
       <div class="nav-links">
-        <a href={`/apps/${app.slug}/terms/`} class="nav-link">
+        <a href={`/apps/${app.id}/terms/`} class="nav-link">
           <span>Terms of Use</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
         </a>
-        <a href={`/apps/${app.slug}/privacy/`} class="nav-link">
+        <a href={`/apps/${app.id}/privacy/`} class="nav-link">
           <span>Privacy Policy</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M5 12h14M12 5l7 7-7 7"/>

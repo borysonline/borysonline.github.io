@@ -1,15 +1,15 @@
 ---
 import AppLayout from '@layouts/AppLayout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
   const apps = await getCollection('apps');
   const terms = await getCollection('app-terms');
   
   return apps.map(app => {
-    const appTerms = terms.find(t => t.data.appId === app.slug);
+    const appTerms = terms.find(t => t.data.appId === app.id);
     return {
-      params: { id: app.slug },
+      params: { id: app.id },
       props: { app, terms: appTerms },
     };
   });
@@ -17,7 +17,7 @@ export async function getStaticPaths() {
 
 const { app, terms } = Astro.props;
 const { Content } = terms 
-  ? await terms.render() 
+  ? await render(terms) 
   : { Content: null };
 ---
 
@@ -28,7 +28,7 @@ const { Content } = terms
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M9 18l6-6-6-6"/>
       </svg>
-      <a href={`/apps/${app.slug}/`}>{app.data.title}</a>
+      <a href={`/apps/${app.id}/`}>{app.data.title}</a>
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M9 18l6-6-6-6"/>
       </svg>
@@ -79,13 +79,13 @@ const { Content } = terms
     )}
 
     <nav class="page-nav">
-      <a href={`/apps/${app.slug}/`} class="nav-button">
+      <a href={`/apps/${app.id}/`} class="nav-button">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M19 12H5M12 19l-7-7 7-7"/>
         </svg>
         Back to {app.data.title}
       </a>
-      <a href={`/apps/${app.slug}/privacy/`} class="nav-button nav-button-primary">
+      <a href={`/apps/${app.id}/privacy/`} class="nav-button nav-button-primary">
         Privacy Policy
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M5 12h14M12 5l7 7-7 7"/>
