@@ -7,8 +7,9 @@ export interface Props {
   image?: string;
 }
 
-const { title, description = 'Borys Online - Apps & Blog', image = '/og-image.png' } = Astro.props;
+const { title, description = 'Borys Online - Apps & Blog', image = '/og-image.svg' } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const imageURL = image ? new URL(image, Astro.site).toString() : undefined;
 ---
 
 <!doctype html>
@@ -18,6 +19,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#6366f1" />
     
     <!-- Google Fonts - Modern Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -26,21 +28,22 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="image" content={image} />
     <link rel="canonical" href={canonicalURL} />
+    {imageURL && <meta name="image" content={imageURL} />}
     
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Borys Online" />
+    {imageURL && <meta property="og:image" content={imageURL} />}
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={image} />
+    {imageURL && <meta name="twitter:image" content={imageURL} />}
     
     <!-- RSS Feed -->
     <link rel="alternate" type="application/rss+xml" title="Borys Online Blog" href={`${Astro.site}feed.xml`} />

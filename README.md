@@ -18,8 +18,9 @@ Visit `http://localhost:4321` to view the site locally.
 
 ```bash
 pnpm run build
+pnpm run check
 ```
 
 ## Deployment
 
-Push to the main branch to deploy automatically via GitHub Actions.
+Push to the master branch to deploy automatically via GitHub Actions.

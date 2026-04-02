@@ -1,0 +1,37 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="96" y1="64" x2="1118" y2="586" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A" />
+      <stop offset="1" stop-color="#1E293B" />
+    </linearGradient>
+    <linearGradient id="accent" x1="288" y1="170" x2="844" y2="540" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6366F1" />
+      <stop offset="1" stop-color="#A855F7" />
+    </linearGradient>
+    <filter id="glow" x="171" y="92" width="770" height="431" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+      <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+      <feGaussianBlur stdDeviation="28" result="effect1_foregroundBlur_1_2" />
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" rx="32" fill="url(#bg)" />
+  <circle cx="950" cy="134" r="140" fill="#6366F1" fill-opacity="0.12" />
+  <circle cx="210" cy="560" r="180" fill="#A855F7" fill-opacity="0.12" />
+
+  <g filter="url(#glow)">
+    <path d="M356 142L530 242V442L356 542L182 442V242L356 142Z" stroke="url(#accent)" stroke-width="18" stroke-linejoin="round" />
+    <circle cx="356" cy="294" r="72" fill="url(#accent)" />
+    <rect x="270" y="430" width="172" height="22" rx="11" fill="url(#accent)" />
+  </g>
+
+  <text x="520" y="258" fill="#E2E8F0" font-size="34" font-family="Inter, Arial, sans-serif" letter-spacing="0.12em">
+    APPS AND BLOG
+  </text>
+  <text x="520" y="360" fill="white" font-size="78" font-weight="700" font-family="Outfit, Inter, Arial, sans-serif">
+    Borys Online
+  </text>
+  <text x="520" y="430" fill="#94A3B8" font-size="32" font-family="Inter, Arial, sans-serif">
+    Crafted applications, product notes, and development insights.
+  </text>
+</svg>

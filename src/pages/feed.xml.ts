@@ -4,11 +4,12 @@ import type { APIContext } from 'astro';
 
 export async function GET(context: APIContext) {
   const blog = await getCollection('blog');
+  const site = context.site ?? 'https://borysonline.com';
 
   return rss({
     title: 'Borys Online Blog',
     description: 'Blog posts and updates about development and technology',
-    site: context.site,
+    site,
     items: blog
       .filter(post => !post.data.draft)
       .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())

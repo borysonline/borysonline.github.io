@@ -6,12 +6,14 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "check": "astro check",
     "preview": "astro preview"
   },
   "dependencies": {
     "astro": "^4.0.0"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.8",
     "@astrojs/rss": "^3.0.0",
     "@astrojs/sitemap": "^3.0.0",
     "@types/node": "^20.0.0",

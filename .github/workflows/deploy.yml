@@ -33,7 +33,10 @@ jobs:
           cache: 'pnpm'
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
+
+      - name: Validate project
+        run: pnpm run check
 
       - name: Build site
         run: pnpm run build
