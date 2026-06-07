@@ -265,7 +265,9 @@ import BaseLayout from "@layouts/BaseLayout.astro";
           action="https://formspree.io/f/mwvjlpjp"
         >
           <input type="hidden" name="_subject" value="New Context Log Bot waitlist signup" />
-          <input type="hidden" name="_next" value="https://borysonline.com/context-log-bot/#waitlist" />
+          <input type="hidden" name="_next" value="https://borysonline.com/context-log-bot/?submitted=1#waitlist" />
+          <input type="hidden" name="form_id" value="clb_waitlist" />
+          <input type="hidden" name="landing" value="context-log-bot" />
           <div class="clb-form-row">
             <input
               type="email"
@@ -286,6 +288,34 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 
   </div>
 </BaseLayout>
+
+<script is:inline>
+  (() => {
+    const url = new URL(window.location.href);
+    const isSubmitted = url.searchParams.get("submitted") === "1";
+
+    if (!isSubmitted) return;
+
+    const eventPayload = {
+      form_id: "clb_waitlist",
+      landing: "context-log-bot",
+      page_path: url.pathname,
+      signup_stage: "waitlist",
+      currency: "USD",
+      value: 9,
+    };
+
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "generate_lead", eventPayload);
+      window.gtag("event", "waitlist_signup_success", eventPayload);
+    }
+
+    // Clean URL so the event won't retrigger on refresh.
+    url.searchParams.delete("submitted");
+    const cleanUrl = `${url.pathname}${url.search}${url.hash || "#waitlist"}`;
+    window.history.replaceState({}, "", cleanUrl);
+  })();
+</script>
 
 <style>
   /* ── PAGE WRAPPER ── */
