@@ -1,0 +1,90 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="404 - Page Not Found | Borys Online"
+  description="The page you are looking for does not exist."
+>
+  <section class="not-found">
+    <div class="not-found-glow" aria-hidden="true"></div>
+    <p class="eyebrow">Error 404</p>
+    <h1>Page Not Found</h1>
+    <p class="description">
+      The page may have been moved, deleted, or the URL may be incorrect.
+    </p>
+
+    <div class="actions">
+      <a href="/" class="button">Go Home</a>
+      <a href="/apps/" class="button-secondary">Browse Apps</a>
+      <a href="/blog/" class="button-secondary">Read Blog</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    position: relative;
+    isolation: isolate;
+    min-height: 60vh;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 4rem 1rem;
+    animation: fadeIn 0.35s ease-out;
+  }
+
+  .not-found-glow {
+    position: absolute;
+    inset: 50% auto auto 50%;
+    transform: translate(-50%, -50%);
+    width: min(68vw, 560px);
+    aspect-ratio: 1;
+    background: radial-gradient(circle, var(--color-accent-glow) 0%, transparent 70%);
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  h1 {
+    margin-bottom: 1rem;
+  }
+
+  .description {
+    max-width: 44ch;
+    color: var(--color-muted);
+    margin: 0 auto 2rem;
+    font-size: 1.05rem;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  @media (max-width: 640px) {
+    .not-found {
+      min-height: 52vh;
+      padding-top: 2.5rem;
+    }
+
+    .actions {
+      width: 100%;
+      gap: 0.6rem;
+    }
+
+    .actions a {
+      width: 100%;
+    }
+  }
+</style>
