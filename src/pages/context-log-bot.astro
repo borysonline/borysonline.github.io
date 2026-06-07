@@ -794,17 +794,6 @@ import BaseLayout from "@layouts/BaseLayout.astro";
     margin: var(--spacing-sm) 0 0;
   }
 
-  .clb-waitlist-or {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
-    margin: var(--spacing-xl) auto;
-    max-width: 360px;
-    color: var(--color-muted);
-    font-size: 0.85rem;
-  }
-
-  .clb-waitlist-or::before,
   /* ── VALIDATION SECTION ── */
   .clb-validation-grid {
     display: grid;
@@ -861,6 +850,17 @@ import BaseLayout from "@layouts/BaseLayout.astro";
     padding: 0.2rem 0.65rem;
     margin-bottom: var(--spacing-sm);
   }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .clb-hero-cta {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .clb-btn-primary,
+    .clb-btn-secondary {
+      justify-content: center;
     }
 
     .clb-step {
